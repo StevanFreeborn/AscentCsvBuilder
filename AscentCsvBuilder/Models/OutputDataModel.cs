@@ -1,4 +1,6 @@
-﻿namespace AscentCsvBuilder.Models;
+﻿using CsvHelper.Configuration.Attributes;
+
+namespace AscentCsvBuilder.Models;
 
 public class Regulator
 {
@@ -13,12 +15,25 @@ public class Regulator
         Link = datum.Attributes.Links.App.ToString();
     }
 
+    [Name("Regulation ID")]
     public string RegulatorId { get; set; }
+
+    [Ignore]
     public string Type { get; set; }
+
+    [Name("Name")]
     public string Name { get; set; }
+
+    [Name("Region")]
     public string Region { get; set; }
+
+    [Name("Country")]
     public string Country { get; set; }
+
+    [Name("State/Territory")]
     public string State { get; set; }
+
+    [Name("Link")]
     public string Link { get; set; }
 
 }
@@ -45,27 +60,58 @@ public class Rule
         Subsection = datum.Attributes.Hierarchy[0].Name;
     }
 
+    [Name("Rule ID")]
     public string RuleId { get; set; }
+
+    [Ignore]
     public string Type { get; set; }
+
+    [Name("Rule Number")]
     public string RuleNumber { get; set; }
+
+    [Name("Rule Title")]
     public string RuleTitle { get; set; }
+
+    [Name("Content")]
     public string Content { get; set; }
+
+    [Ignore]
     public long Position { get; set; }
+
+    [Name("Effective Date")]
     public DateTimeOffset EffectiveDate { get; set; }
+
+    [Name("Expiration Date")]
     public DateTimeOffset? ExpirationDate { get; set; }
+
+    [Name("Published Date")]
     public DateTimeOffset PublishedDate { get; set; }
+
+    [Ignore]
     public DateTimeOffset CreatedAt { get; set; }
+
+    [Ignore]
     public DateTimeOffset ModifiedAt { get; set; }
+
+    [Name("Regulator")]
     public string RegulatorId { get; set; }
+
+    [Ignore]
     public string RegulatorName { get; set; }
+
+    [Name("Link")]
     public string Link { get; set; }
+
+    [Name("Section")]
     public string Section { get; set; }
+
+    [Name("Subsection")]
     public string Subsection { get; set; }
 }
 
-public class AscentTask
+public class Obligation
 {
-    public AscentTask(Datum datum)
+    public Obligation(Datum datum)
     {
         ObligationId = datum.Id;
         Type = datum.Type;
@@ -83,22 +129,57 @@ public class AscentTask
         Status = datum.Attributes.Status;
         ObligationContent = datum.Attributes.Content;
         DueDate = datum.Attributes.DueDate;
+        SupportingInformation = string.Empty;
     }
 
+    [Name("Obligation ID")]
     public string ObligationId { get; set; }
+
+    [Ignore]
     public string Type { get; set; }
+
+    [Ignore]
     public DateTimeOffset CreatedAt { get; set; }
+
+    [Ignore]
     public DateTimeOffset ModifiedAt { get; set; }
+
+    [Name("Frequency")]
     public string Frequency { get; set; }
+
+    [Ignore]
     public string Preview { get; set; }
+
+    [Ignore]
     public DateTimeOffset StatusChangedAt { get; set; }
+
+    [Name("Link")]
     public string Link { get; set; }
+
+    [Name("Regulatory Rule")]
     public string RegulatoryRule { get; set; }
+
+    [Name("Regulator")]
     public string Regulator { get; set; }
+
+    [Name("Citation")]
     public string Citation { get; set; }
+
+    [Name("Effective Date")]
     public DateTimeOffset EffectiveDate { get; set; }
+
+    [Name("Expiration Date")]
     public DateTimeOffset? ExpirationDate { get; set; }
+
+    [Name("Status")]
     public string Status { get; set; }
+
+    [Name("Obligation Content")]
     public string ObligationContent { get; set; }
+
+    [Name("Due Date")]
     public DateTimeOffset? DueDate { get; set; }
+
+    [Name("Supporting Information")]
+    public string SupportingInformation { get; set; }
 }

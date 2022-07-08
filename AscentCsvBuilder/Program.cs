@@ -18,17 +18,16 @@ public class Program
     {
         var regulators = new List<Regulator>();
         var rules = new List<Rule>();
-        var tasks = new List<AscentTask>();
+        var obligations = new List<Obligation>();
 
         var ascentDataService = new AscentDataService(companyName, profileId, apiToken);
         await FetchRegulatorsWithRules(regulators, rules, ascentDataService);
-        await FetchTasks(tasks, ascentDataService);        
+        await FetchObligations(obligations, ascentDataService);
 
         Console.WriteLine("Writing output files");
-        OutputFileService.Write(regulators);
-        OutputFileService.Write(rules);
-        OutputFileService.Write(tasks);
-
+        OutputFileService.Write(regulators, "AscentRegulators.csv");
+        OutputFileService.Write(rules, "AscentRules.csv");
+        OutputFileService.Write(obligations, "AscentObligation.csv");
     }
 
     private static async Task FetchRegulatorsWithRules(List<Regulator> regulators, List<Rule> rules, AscentDataService ascentDataService)
@@ -65,13 +64,13 @@ public class Program
         }
     }
 
-    private static async Task FetchTasks(List<AscentTask> tasks, AscentDataService ascentDataService)
+    private static async Task FetchObligations(List<Obligation> obligations, AscentDataService ascentDataService)
     {
-        Console.WriteLine("Fetching tasks");
+        Console.WriteLine("Fetching obligations");
         var tasksResponse = await ascentDataService.GetTasks();
         foreach (var task in tasksResponse.Data)
         {
-            tasks.Add(new AscentTask(task));
+            obligations.Add(new Obligation(task));
         }
 
         var nextPageUri = tasksResponse.Links.Next;
@@ -82,7 +81,7 @@ public class Program
             tasksResponse = await ascentDataService.GetByUrl(nextPageUri.ToString());
             foreach (var task in tasksResponse.Data)
             {
-                tasks.Add(new AscentTask(task));
+                obligations.Add(new Obligation(task));
                 nextPageUri = tasksResponse.Links.Next;
                 nextPageQueries = HttpUtility.ParseQueryString(nextPageUri.Query);
                 nextPageValue = nextPageQueries["page"];
