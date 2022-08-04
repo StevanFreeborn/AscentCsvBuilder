@@ -25,9 +25,9 @@ public class Program
         await FetchObligations(obligations, ascentDataService);
 
         Console.WriteLine("Writing output files");
-        OutputFileService.Write(regulators, "AscentRegulators.csv");
-        OutputFileService.Write(rules, "AscentRules.csv");
-        OutputFileService.Write(obligations, "AscentObligation.csv");
+        OutputFileService.Write(regulators, "AscentRegulators.csv", 40);
+        OutputFileService.Write(rules, "AscentRules.csv", 40);
+        OutputFileService.Write(obligations, "AscentObligation.csv", 40);
     }
 
     private static async Task FetchRegulatorsWithRules(List<Regulator> regulators, List<Rule> rules, AscentDataService ascentDataService)
