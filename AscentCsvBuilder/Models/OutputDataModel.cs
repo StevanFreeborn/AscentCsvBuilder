@@ -53,8 +53,8 @@ public class Rule
         PublishedDate = datum.Attributes.PublishedDate;
         CreatedAt = datum.Attributes.CreatedAt;
         ModifiedAt = datum.Attributes.ModifiedAt;
-        RegulatorId = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "regulator").Id;
-        RegulatorName = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "regulator").Name;
+        RegulatorId = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "regulator")?.Id;
+        RegulatorName = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "regulator")?.Name;
         Link = datum.Attributes.Links.App.ToString();
         Section = datum.Attributes.Hierarchy[1].Name;
         Subsection = datum.Attributes.Hierarchy[0].Name;
@@ -121,8 +121,8 @@ public class Obligation
         Preview = datum.Attributes.Preview;
         StatusChangedAt = datum.Attributes.StatusChangedAt;
         Link = datum.Attributes.Links.Self.ToString();
-        RegulatoryRule = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "rule").Id;
-        Regulator = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "regulator").Id;
+        RegulatoryRule = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "rule")?.Id;
+        Regulator = datum.Attributes.Hierarchy.FirstOrDefault(f => f.Type == "regulator")?.Id;
         Citation = datum.Attributes.Citation;
         EffectiveDate = datum.Attributes.StartsAt;
         ExpirationDate = datum.Attributes.EndsAt;
