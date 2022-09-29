@@ -79,7 +79,7 @@ public class Rule
     public long Position { get; set; }
 
     [Name("Effective Date")]
-    public DateTimeOffset EffectiveDate { get; set; }
+    public DateTimeOffset? EffectiveDate { get; set; }
 
     [Name("Expiration Date")]
     public DateTimeOffset? ExpirationDate { get; set; }
@@ -166,7 +166,7 @@ public class Obligation
     public string Citation { get; set; }
 
     [Name("Effective Date")]
-    public DateTimeOffset EffectiveDate { get; set; }
+    public DateTimeOffset? EffectiveDate { get; set; }
 
     [Name("Expiration Date")]
     public DateTimeOffset? ExpirationDate { get; set; }

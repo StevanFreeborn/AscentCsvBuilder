@@ -92,7 +92,7 @@ public class Attributes
     public long Position { get; set; }
 
     [JsonPropertyName("startsAt")]
-    public DateTimeOffset StartsAt { get; set; }
+    public DateTimeOffset? StartsAt { get; set; }
 
     [JsonPropertyName("endsAt")]
     public DateTimeOffset? EndsAt { get; set; }
