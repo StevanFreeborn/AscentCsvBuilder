@@ -94,10 +94,10 @@ public class Rule
     public DateTimeOffset ModifiedAt { get; set; }
 
     [Name("Regulator")]
-    public string RegulatorId { get; set; }
+    public string? RegulatorId { get; set; }
 
     [Ignore]
-    public string RegulatorName { get; set; }
+    public string? RegulatorName { get; set; }
 
     [Name("Link")]
     public string Link { get; set; }
@@ -157,10 +157,10 @@ public class Obligation
     public string Link { get; set; }
 
     [Name("Regulatory Rule")]
-    public string RegulatoryRule { get; set; }
+    public string? RegulatoryRule { get; set; }
 
     [Name("Regulator")]
-    public string Regulator { get; set; }
+    public string? Regulator { get; set; }
 
     [Name("Citation")]
     public string Citation { get; set; }
